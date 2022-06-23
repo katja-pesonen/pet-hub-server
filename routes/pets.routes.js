@@ -43,7 +43,7 @@ router.put('/:petId', (req, res, next) => {
 });
 
 
-// DELETE  /pets/petId  -  Delete a specific pet
+// DELETE  /pets/:petId  -  Delete a specific pet
 router.delete('/:petId', (req, res, next) => {
   const { petId } = req.params;
   
