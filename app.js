@@ -11,9 +11,17 @@ const express = require("express");
 
 const app = express();
 
+// default value for title local
+const capitalized = require('./utils/capitalized')
+const projectName = 'pet-hub'
+app.locals.appTitle = `${capitalized(projectName)} `
+
+
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
 require("./config")(app);
 // const { isAuthenticated } = require('./middlewares/jwt.middleware')
+
+
 
 // 👇 Start handling routes here
 // Contrary to the views version, all routes are controlled from the routes/index.js
