@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const PetModel = require('../models/Pet.model')
 
+const fileUploader = require("../config/cloudinary.config")
 
 
 // Get all the pets
@@ -19,7 +20,7 @@ router.get('/', async (req, res, next) => {
 
 
   //  POST /pets/create  -  Creates a new pet
-router.post('/create', (req, res, next) => {
+router.post('/create', fileUploader.single("receta-img"),  (req, res, next) => {
   const { name, type, age, description, image } = req.body;
  
   PetModel.create({ name, type, age, description, image })
