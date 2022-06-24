@@ -22,7 +22,7 @@ const petSchema = new Schema(
     },
     image: {
         type: String,
-        default: 'https://res.cloudinary.com/test.jpg'
+        default: 'https://res.cloudinary.com/obliviate/image/upload/v1656014492/Pet-Hub/default-logo_mhkpxv.jpg'
       },
       owner: {
         type: { type: Schema.Types.ObjectId, ref: User }
