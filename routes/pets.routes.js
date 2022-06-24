@@ -20,9 +20,10 @@ router.get('/', async (req, res, next) => {
 
 
   //  POST /pets/create  -  Creates a new pet
-router.post('/create', fileUploader.single("receta-img"),  (req, res, next) => {
-  const { name, type, age, description, image } = req.body;
- 
+router.post('/create', fileUploader.single("image"),  (req, res, next) => {
+  const { name, type, age, description } = JSON.parse(req.body.values);
+  console.log({ name, type, age, description })
+  let image = req.file.path
   PetModel.create({ name, type, age, description, image })
     .then(response => res.json(response))
     .catch(err => res.json(err));
