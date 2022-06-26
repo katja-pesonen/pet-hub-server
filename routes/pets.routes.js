@@ -31,7 +31,7 @@ router.post('/create', fileUploader.single("image"),  (req, res, next) => {
 
 
 
-// PUT  /pets/:id  -  Updates a specific project by id
+// PUT  /pets/:id  -  Updates a specific pet by id
 router.put('/:petId', (req, res, next) => {
   const { petId } = req.params;
  
@@ -61,6 +61,21 @@ router.delete('/:petId', (req, res, next) => {
     .then(() => res.json({ message: `Pet profile ${petId} removed successfully.` }))
     .catch(error => res.json(error));
 });
+
+
+// // PUT  /pets/:id/comment  -  Comment added to a specific pet 
+// router.put('/:petId', (req, res, next) => {
+//   const { petId } = req.params;
+ 
+//   if (!mongoose.Types.ObjectId.isValid(petId)) {
+//     res.status(400).json({ message: 'Specified id is not valid' });
+//     return;
+//   }
+ 
+//   PetModel.findByIdAndUpdate(petId, req.body, { new: true })
+//     .then((updatedPet) => res.json(updatedPet))
+//     .catch(error => res.json(error));
+// });
 
 
 
