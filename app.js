@@ -33,7 +33,7 @@ const allRoutes = require("./routes/index.routes");
 app.use("/", allRoutes);
 
 const petsRoutes = require("./routes/pets.routes");
-app.use("/pets", petsRoutes);
+app.use("/api/pets", petsRoutes);
 
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
