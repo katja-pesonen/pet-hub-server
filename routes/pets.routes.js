@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const PetModel = require('../models/Pet.model')
 const {isAuthenticated} = require('../middlewares/jwt.middleware')
-
+const mongoose  = require('mongoose');
 const fileUploader = require("../config/cloudinary.config")
 
 
@@ -14,7 +14,7 @@ router.get('/', async (req, res, next) => {
   // Get one specific pet
   router.get('/:petId', isAuthenticated, async (req, res, next) => {
     const { petId } = req.params
-    console.log(req.payload)
+    // console.log(req.payload, 'Payload of user')
     const pet = await PetModel.findById(petId)
     res.status(200).json(pet)
     // res.json(pet)
@@ -22,11 +22,12 @@ router.get('/', async (req, res, next) => {
 
 
   //  POST /pets/create  -  Creates a new pet
-router.post('/create', fileUploader.single("image"),  (req, res, next) => {
+router.post('/create', isAuthenticated, fileUploader.single("image"),  (req, res, next) => {
+  console.log(req.payload, 'Payload of create pet part')
   const { name, type, age, description } = JSON.parse(req.body.values);
   console.log({ name, type, age, description })
   let image = req.file.path
-  PetModel.create({ name, type, age, description, image })
+  PetModel.create({ name, type, age, description, image, owner: req.payload.id })
     .then(response => res.json(response))
     .catch(err => res.json(err));
 });

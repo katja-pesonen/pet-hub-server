@@ -25,7 +25,7 @@ const petSchema = new Schema(
         default: 'https://res.cloudinary.com/obliviate/image/upload/v1656147899/Pet-Hub/paw-default_viarbn.jpg'
       },
     owner: {
-        type: { type: Schema.Types.ObjectId, ref: User }
+        type: Schema.Types.ObjectId, ref: User 
       },
 
   },
