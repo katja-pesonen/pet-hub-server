@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const PetModel = require('../models/Pet.model')
+const {isAuthenticated} = require('../middlewares/jwt.middleware')
 
 const fileUploader = require("../config/cloudinary.config")
 
@@ -11,11 +12,12 @@ router.get('/', async (req, res, next) => {
   })
   
   // Get one specific pet
-  router.get('/:petId', async (req, res, next) => {
+  router.get('/:petId', isAuthenticated, async (req, res, next) => {
     const { petId } = req.params
-  
+    console.log(req.payload)
     const pet = await PetModel.findById(petId)
-    res.json(pet)
+    res.status(200).json(pet)
+    // res.json(pet)
   })
 
 

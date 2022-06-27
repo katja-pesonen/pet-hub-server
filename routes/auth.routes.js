@@ -38,9 +38,9 @@ router.post('/login', async (req, res, next) => {
   if (user === null) {
     res.status(404).json({ message: 'User not found', status: 'KO' })
   } else {
-    const { passwordHash, createdAt, updatedAt } = user
+    const { _id, passwordHash, createdAt, updatedAt } = user
     if (bcryptjs.compareSync(password, passwordHash)) {
-      const tempUser = { email, createdAt, updatedAt }
+      const tempUser = { id: _id, email, createdAt, updatedAt }
       delete tempUser.passwordHash
       const token = jwt.sign(tempUser, process.env.TOKEN_SECRET, {
         algorithm: 'HS256',
