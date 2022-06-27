@@ -34,6 +34,8 @@ router.post('/create', isAuthenticated, fileUploader.single("image"),  (req, res
 
 
 
+
+
 // PUT  /pets/:id  -  Updates a specific pet by id
 router.put('/:petId', (req, res, next) => {
   const { petId } = req.params;
