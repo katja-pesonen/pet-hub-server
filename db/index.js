@@ -3,7 +3,7 @@
 const mongoose = require("mongoose");
 
 // for Heroku
-// require('dotenv').config();
+require('dotenv').config();
 
 
 // ℹ️ Sets the MongoDB URI for our app to have access to it.
@@ -11,18 +11,22 @@ const mongoose = require("mongoose");
 
 const MONGO_URI = process.env.MONGODB_URI || "mongodb://localhost/pet-hub-server";
 
-mongoose
-  .connect(MONGO_URI)
-  .then((x) => {
-    console.log(
-      `Connected to Mongo! Database name: "${x.connections[0].name}"`
-    );
-  })
-  .catch((err) => {
-    console.error("Error connecting to mongo: ", err);
-  });
+// mongoose
+//   .connect(MONGO_URI)
+//   .then((x) => {
+//     console.log(
+//       `Connected to Mongo! Database name: "${x.connections[0].name}"`
+//     );
+//   })
+//   .catch((err) => {
+//     console.error("Error connecting to mongo: ", err);
+//   });
 
-
+// for Heroku
+  mongoose
+  .connect(process.env.MONGODB_URI)
+  .then(x => console.log(`Connected the Database: "${x.connections[0].name}"`))
+  .catch(err => console.error('Error connecting to mongo', err));
 
 
   // for Heroku
