@@ -21,7 +21,7 @@ router.get('/userpets', isAuthenticated, async (req, res, next) => {
     // console.log("Kat was here", elem.owner.toString(), userId)
     return (elem.owner.toString() == userId)
   })
-  console.log("Kat was here", filteredPets)
+  // console.log("Kat was here", filteredPets)
   res.json(filteredPets)
 })
 
