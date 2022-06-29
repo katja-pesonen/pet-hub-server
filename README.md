@@ -2,7 +2,7 @@
 
 ## Description
 
-Pet Hub is a fun website where you can view profiles of peoples pets, and upload your own pets too! Sign up & log in to add your furry friends to the site!
+Pet Hub is a fun website where you can view profiles of people's pets, and upload your own pets too! Sign up & log in to add your furry friends to the site!
 
 ## User Stories
 
@@ -145,9 +145,9 @@ comment - String // required
 
 ### Trello/Figma
 
-[Link to your figma board](https://www.figma.com/file/bTnYu1tS0YwLHoOkEOQ1rW/Pet-App?node-id=0%3A1)
+[Link to our figma board](https://www.figma.com/file/bTnYu1tS0YwLHoOkEOQ1rW/Pet-App?node-id=0%3A1)
 
-[Link to your trello board](https://trello.com/b/hbYrvlFX/pet-hub-trello-board) 
+[Link to our trello board](https://trello.com/b/hbYrvlFX/pet-hub-trello-board) 
 
 ### Git
 
