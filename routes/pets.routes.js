@@ -2,7 +2,8 @@ const router = require('express').Router()
 const PetModel = require('../models/Pet.model')
 const {isAuthenticated} = require('../middlewares/jwt.middleware')
 const mongoose  = require('mongoose');
-const fileUploader = require("../config/cloudinary.config")
+const fileUploader = require("../config/cloudinary.config");
+const Comment = require('../models/Comments.model');
 
 
 // Get all the pets
@@ -15,7 +16,7 @@ router.get('/', async (req, res, next) => {
   router.get('/:petId', isAuthenticated, async (req, res, next) => {
     const { petId } = req.params
     // console.log(req.payload, 'Payload of user')
-    const pet = await PetModel.findById(petId)
+    const pet = await PetModel.findById(petId).populate('comments')
     res.status(200).json(pet)
     // res.json(pet)
   })
@@ -25,7 +26,7 @@ router.get('/', async (req, res, next) => {
 router.post('/create', isAuthenticated, fileUploader.single("image"),  (req, res, next) => {
   console.log(req.payload, 'Payload of create pet part')
   const { name, type, age, description } = JSON.parse(req.body.values);
-  console.log({ name, type, age, description })
+  // console.log({ name, type, age, description })
   let image = req.file.path
   PetModel.create({ name, type, age, description, image, owner: req.payload.id })
     .then(response => res.json(response))
@@ -33,6 +34,18 @@ router.post('/create', isAuthenticated, fileUploader.single("image"),  (req, res
 });
 
 
+
+
+  //  POST /pets/comments -  Creates a comment
+  router.post('/comments', isAuthenticated,  (req, res, next) => {
+    // const { pet } = req.params
+    const { comment, author, pet} = JSON.parse(req.body.values);
+
+    Comment.create({ comment, pet: req.params, author: req.payload.id })
+      .then(response => res.json(response))
+      .catch(err => res.json(err));
+  });
+  
 
 
 
@@ -67,20 +80,6 @@ router.delete('/:petId', (req, res, next) => {
     .catch(error => res.json(error));
 });
 
-
-// // PUT  /pets/:id/comment  -  Comment added to a specific pet 
-// router.put('/:petId', (req, res, next) => {
-//   const { petId } = req.params;
- 
-//   if (!mongoose.Types.ObjectId.isValid(petId)) {
-//     res.status(400).json({ message: 'Specified id is not valid' });
-//     return;
-//   }
- 
-//   PetModel.findByIdAndUpdate(petId, req.body, { new: true })
-//     .then((updatedPet) => res.json(updatedPet))
-//     .catch(error => res.json(error));
-// });
 
 
 

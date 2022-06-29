@@ -1,4 +1,5 @@
 const { Schema, model } = require("mongoose");
+const Comment = require("./Comments.model.js");
 const User = require("./User.model.js")
 
 const petSchema = new Schema(
@@ -22,11 +23,14 @@ const petSchema = new Schema(
     },
     image: {
         type: String,
-        // default: 'https://res.cloudinary.com/obliviate/image/upload/v1656147899/Pet-Hub/paw-default_viarbn.jpg'
       },
     owner: {
         type: Schema.Types.ObjectId, ref: User 
       },
+
+      comments: [{
+        type: Schema.Types.ObjectId, ref: Comment
+      }],
 
   },
   {
