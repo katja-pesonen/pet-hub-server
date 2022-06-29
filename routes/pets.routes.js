@@ -17,6 +17,9 @@ router.get('/', async (req, res, next) => {
     const { petId } = req.params
     // console.log(req.payload, 'Payload of user')
     const pet = await PetModel.findById(petId).populate('comments')
+    // const petComments = pet.comments
+    // await petComments.populate('author')
+    console.log('populated pet', pet)
     res.status(200).json(pet)
     // res.json(pet)
   })
@@ -37,15 +40,18 @@ router.post('/create', isAuthenticated, fileUploader.single("image"),  (req, res
 
 
   //  POST /pets/comments -  Creates a comment
-  router.post('/comments', isAuthenticated,  (req, res, next) => {
+  router.post('/:petId/comments', isAuthenticated,  async (req, res, next) => {
     // const { pet } = req.params
-    const { comment, author, pet} = JSON.parse(req.body.values);
+    const { comment } = req.body;
+    console.log(req.body, req.payload)
 
-    Comment.create({ comment, pet: req.params, author: req.payload.id })
-      .then(response => res.json(response))
-      .catch(err => res.json(err));
+    const response = await Comment.create({ comment, pet: req.params.petId, author: req.payload.username })
+    await PetModel.findByIdAndUpdate(req.params.petId, { $push: { comments: response._id } })
+    res.status(201).json("Comment created")
+    
   });
   
+
 
 
 
