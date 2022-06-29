@@ -151,7 +151,7 @@ comment - String // required
 
 ### Git
 
-The url to your repository and to your deployed project
+The url to our repository and to our deployed project
 
 [Client repository Link](https://github.com/katja-pesonen/pet-hub-client)
 
@@ -164,7 +164,7 @@ The url to your repository and to your deployed project
 
 ### Slides
 
-The url to your presentation slides
+The url to our presentation slides
 
 [Slides Link](https://docs.google.com/presentation/d/1I72dnqW-gwcKugh6XmmJCPE2X9Yim8WNXiAAqIYrbtU/edit?usp=sharing)
 
