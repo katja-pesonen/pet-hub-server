@@ -11,6 +11,20 @@ router.get('/', async (req, res, next) => {
     const pets = await PetModel.find()
     res.json(pets)
   })
+
+
+  // Get all user pets
+router.get('/userpets', isAuthenticated, async (req, res, next) => {
+  const pets = await PetModel.find()
+  const userId = req.payload.id
+  const filteredPets = pets.filter((elem) => {
+    // console.log("Kat was here", elem.owner.toString(), userId)
+    return (elem.owner.toString() == userId)
+  })
+  console.log("Kat was here", filteredPets)
+  res.json(filteredPets)
+})
+
   
   // Get one specific pet
   router.get('/:petId', isAuthenticated, async (req, res, next) => {
