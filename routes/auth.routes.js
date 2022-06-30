@@ -29,9 +29,10 @@ router.post('/signup', async (req, res, next) => {
   }
 })
 
+
+
 router.post('/login', async (req, res, next) => {
   const { email, password } = req.body
-  // console.log(req.body)
 
   const user = await User.findOne({ email })
 
@@ -53,6 +54,9 @@ router.post('/login', async (req, res, next) => {
   }
 })
 
+
+
+
 router.get('/verify', isAuthenticated, (req, res, next) => {
   // <== CREATE NEW ROUTE
 
@@ -64,5 +68,6 @@ router.get('/verify', isAuthenticated, (req, res, next) => {
   // previously set as the token payload
   res.status(200).json(req.payload)
 })
+
 
 module.exports = router
