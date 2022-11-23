@@ -160,7 +160,7 @@ The url to our repository and to our deployed project
 
 [Deploy Link](https://pet-hub-app.netlify.app/)
 
-[Backend Link](https://pet-hub-app.herokuapp.com)
+<!-- [Backend Link](https://pet-hub-app.herokuapp.com) -->
 
 ### Slides
 

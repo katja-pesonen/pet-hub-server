@@ -28,7 +28,7 @@ const petSchema = new Schema(
         type: Schema.Types.ObjectId, ref: User 
       },
 
-      comments: [{
+    comments: [{
         type: Schema.Types.ObjectId, ref: Comment
       }],
 
