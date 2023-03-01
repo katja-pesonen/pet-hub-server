@@ -13,6 +13,7 @@ const MONGO_URI = process.env.MONGODB_URI || "mongodb://localhost/pet-hub-server
 
 // for Heroku*
 // *No longer using Heroku. Now using Railway App as a server. Dec 2022.
+// *No longer using Railway App. Now using Fly.io as a server. Dec 2022.
   mongoose
   .connect(process.env.MONGODB_URI)
   .then(x => console.log(`Connected the Database: "${x.connections[0].name}"`))
